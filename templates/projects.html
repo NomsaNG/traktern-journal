@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Traktern</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="navbar-brand">Traktern</a>
+                <div class="navbar-links">
+                    <a href="/" class="nav-link">
+                        <span class="icon">📓</span>
+                        <span>Journal</span>
+                    </a>
+                    <a href="/skills" class="nav-link">
+                        <span class="icon">📊</span>
+                        <span>Skills</span>
+                    </a>
+                    <a href="/summary" class="nav-link">
+                        <span class="icon">📈</span>
+                        <span>Summary</span>
+                    </a>
+                    <a href="/projects" class="nav-link active">
+                        <span class="icon">🏗️</span>
+                        <span>Projects</span>
+                    </a>
+                    <a href="/export" class="nav-link">
+                        <span class="icon">📤</span>
+                        <span>Export</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="container">
+            <div class="section">
+                <h1 class="page-title">My Projects</h1>
+                <p class="section-description">Showcase your projects and track what you've built</p>
+            </div>
+
+            <div class="content-grid">
+                <!-- Add Project Form -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Add New Project</h2>
+                        <p class="card-description">Document your projects and what you've learned</p>
+                    </div>
+                    <div class="card-body">
+                        <form id="project-form" class="form" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="title">Project Title</label>
+                                <input type="text" id="title" name="title" placeholder="e.g., Personal Portfolio Website" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea id="description" name="description" placeholder="Brief description of your project..." required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="project_image">Project Image</label>
+                                <input type="file" id="project_image" name="project_image" accept="image/*">
+                                <p class="form-help">Upload a screenshot or image of your project</p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="link">Project Link (Optional)</label>
+                                <input type="url" id="link" name="link" placeholder="https://your-project-url.com">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="skills_used">Skills Used</label>
+                                <input type="text" id="skills_used" name="skills_used" placeholder="e.g., HTML, CSS, JavaScript, Flask" required>
+                                <p class="form-help">Comma-separated list of skills used in this project</p>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <span class="icon">➕</span> Add Project
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Project Filters -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Project Stats</h2>
+                        <p class="card-description">Overview of your project portfolio</p>
+                    </div>
+                    <div class="card-body">
+                        <div id="project-stats" class="project-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Total Projects</span>
+                                <span id="total-projects" class="stat-value">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Skills Utilized</span>
+                                <span id="total-skills" class="stat-value">0</span>
+                            </div>
+                        </div>
+                        
+                        <div class="filter-section">
+                            <h3>Filter Projects</h3>
+                            <div class="form-group">
+                                <input type="text" id="project-search" placeholder="Search projects...">
+                            </div>
+                            <div id="skill-filters" class="skill-filters">
+                                <!-- Skill filters will be added here dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="section">
+                <div id="projects-grid" class="projects-grid">
+                    <div class="loading">Loading projects...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Project Template -->
+    <template id="project-template">
+        <div class="project-card">
+            <div class="project-image-container">
+                <img class="project-image" src="/placeholder.svg" alt="">
+            </div>
+            <div class="project-content">
+                <h3 class="project-title"></h3>
+                <p class="project-description"></p>
+                <div class="project-skills"></div>
+                <div class="project-actions">
+                    <a href="#" class="project-link btn btn-outline" target="_blank">
+                        <span class="icon">🔗</span> View Project
+                    </a>
+                    <button class="delete-project btn btn-danger">
+                        <span class="icon">🗑️</span> Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="{{ url_for('static', filename='js/projects.js') }}"></script>
+</body>
+</html>

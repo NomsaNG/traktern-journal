@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export - Traktern</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://kit.fontawesome.com/8190f54777.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="navbar-brand">Traktern</a>
+                <div class="navbar-links">
+                    <a href="/" class="nav-link">
+                        <span class="icon"><i class="fa-solid fa-book"></i></span>
+                        <span>Journal</span>
+                    </a>
+                    <a href="/skills" class="nav-link">
+                        <span class="icon"><i class="fa-solid fa-screwdriver-wrench"></i></span>
+                        <span>Skills</span>
+                    </a>
+                    <a href="/summary" class="nav-link">
+                        <span class="icon"><i class="fa-solid fa-chart-simple"></i></span>
+                        <span>Summary</span>
+                    </a>
+                    <a href="/export" class="nav-link active">
+                        <span class="icon"><i class="fa-solid fa-file-export"></i></span>
+                        <span>Export</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="container">
+            <div class="export-container">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Export Your Data</h2>
+                        <p class="card-description">Export your journal entries and skill progress for review or sharing</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-buttons">
+                            <button id="export-tab" class="tab-button active">Export</button>
+                            <button id="share-tab" class="tab-button">Share</button>
+                        </div>
+
+                        <!-- Export Form -->
+                        <div id="export-form-container">
+                            <form id="export-form" class="form">
+                                <div class="form-group">
+                                    <label for="export-type">What to export</label>
+                                    <select id="export-type" name="export-type" required>
+                                        <option value="journal">Journal Entries</option>
+                                        <option value="skills">Skill Progress</option>
+                                    </select>
+                                </div>
+
+                                <div id="date-range-container" class="form-group">
+                                    <label for="date-range">Date Range</label>
+                                    <select id="date-range" name="date-range">
+                                        <option value="week">Current Week</option>
+                                        <option value="month">Current Month</option>
+                                        <option value="3months">Last 3 Months</option>
+                                        <option value="all">All Time</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="format">Export Format</label>
+                                    <select id="format" name="format">
+                                        <option value="pdf">PDF Document</option>
+                                        <option value="markdown">Markdown</option>
+                                    </select>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-block">
+                                    <span class="icon">📥</span> Export
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Share Options -->
+                        <div id="share-options-container" class="hidden">
+                            <div class="share-info">
+                                <p>Share your progress with others via a secure link</p>
+
+                                <div class="share-buttons">
+                                    <button class="btn btn-outline btn-block">
+                                        <span class="icon">📄</span> Generate Weekly Summary Link
+                                    </button>
+
+                                    <button class="btn btn-outline btn-block">
+                                        <span class="icon">🔗</span> Share Skill Progress
+                                    </button>
+                                </div>
+
+                                <p class="share-note">Links are valid for 7 days and do not require a login to view</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/export.js') }}"></script>
+</body>
+</html>

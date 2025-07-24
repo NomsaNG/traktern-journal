@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traktern - Journal & Skill Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://kit.fontawesome.com/8190f54777.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="navbar-brand">Traktern</a>
+                <div class="navbar-links">
+                    <a href="/" class="nav-link active">
+                        <span class="icon"><i class="fa-solid fa-book"></i></span>
+                        <span>Journal</span>
+                    </a>
+                    <a href="/skills" class="nav-link">
+                        <span class="icon"><i class="fa-solid fa-screwdriver-wrench"></i></span>
+                        <span>Skills</span>
+                    </a>
+                    <a href="/summary" class="nav-link">
+                        <span class="icon"><i class="fa-solid fa-chart-simple"></i></span>
+                        <span>Summary</span>
+                    </a>
+                    <a href="/projects" class="nav-link">
+                        <span class="icon">🏗️</span>
+                        <span>Projects</span>
+                    </a>
+                    <a href="/export" class="nav-link">
+                        <span class="icon"><i class="fa-solid fa-file-export"></i></span>
+                        <span>Export</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="container">
+            <div class="content-grid">
+                <!-- Journal Entry Form -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Daily Journal</h2>
+                        <p class="card-description">Record your daily progress and reflections</p>
+                    </div>
+                    <div class="card-body">
+                        <form id="journal-form" class="form">
+                            <div class="form-group">
+                                <label for="date">Date</label>
+                                <input type="date" id="date" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="worked_on">What you worked on</label>
+                                <textarea id="worked_on" name="worked_on" placeholder="Describe what you worked on today..." required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="learned">What you learned</label>
+                                <textarea id="learned" name="learned" placeholder="What did you learn today?" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="challenges">Challenges</label>
+                                <textarea id="challenges" name="challenges" placeholder="What challenges did you face?" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="goals">Goals for tomorrow</label>
+                                <textarea id="goals" name="goals" placeholder="What are your goals for tomorrow?" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Save Journal Entry</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Recent Entries -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Recent Entries</h2>
+                        <p class="card-description">Your latest journal entries</p>
+                    </div>
+                    <div class="card-body">
+                        <div id="recent-entries" class="entries-list">
+                            <div class="loading">Loading entries...</div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#all-entries" class="btn btn-outline btn-block">View All Entries</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- All Journal Entries -->
+            <div id="all-entries" class="section">
+                <h2 class="section-title">All Journal Entries</h2>
+                <div id="all-entries-list" class="entries-list all-entries">
+                    <div class="loading">Loading entries...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Entry Template -->
+    <template id="entry-template">
+        <div class="entry-card">
+            <div class="entry-header">
+                <h3 class="entry-date"></h3>
+                <span class="entry-day"></span>
+            </div>
+            <div class="entry-content">
+                <div class="entry-section">
+                    <h4>Worked on:</h4>
+                    <p class="entry-worked-on"></p>
+                </div>
+                <div class="entry-section">
+                    <h4>Learned:</h4>
+                    <p class="entry-learned"></p>
+                </div>
+                <div class="entry-section">
+                    <h4>Challenges:</h4>
+                    <p class="entry-challenges"></p>
+                </div>
+                <div class="entry-section">
+                    <h4>Tomorrow's Goals:</h4>
+                    <p class="entry-goals"></p>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="{{ url_for('static', filename='js/journal.js') }}"></script>
+</body>
+</html>

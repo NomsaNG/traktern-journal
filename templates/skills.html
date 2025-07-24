@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills - Traktern</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://kit.fontawesome.com/8190f54777.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="navbar-brand">Traktern</a>
+                <div class="navbar-links">
+                    <a href="/" class="nav-link">
+                        <span class="icon"><i class="fa-solid fa-book"></i></span>
+                        <span>Journal</span>
+                    </a>
+                    <a href="/skills" class="nav-link active">
+                        <span class="icon"><i class="fa-solid fa-screwdriver-wrench"></i></span>
+                        <span>Skills</span>
+                    </a>
+                    <a href="/summary" class="nav-link">
+                        <span class="icon"><i class="fa-solid fa-chart-simple"></i></span>
+                        <span>Summary</span>
+                    </a>
+                    <a href="/export" class="nav-link">
+                        <span class="icon"><i class="fa-solid fa-file-export"></i></span>
+                        <span>Export</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="container">
+            <div class="content-grid">
+                <!-- Skill Form -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Skill Tracker</h2>
+                        <p class="card-description">Track your progress in different skills</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-buttons">
+                            <button id="new-skill-tab" class="tab-button active">Add New Skill</button>
+                            <button id="update-skill-tab" class="tab-button">Update Progress</button>
+                        </div>
+
+                        <!-- New Skill Form -->
+                        <form id="new-skill-form" class="form">
+                            <div class="form-group">
+                                <label for="skill_name">Skill Name</label>
+                                <input type="text" id="skill_name" name="skill_name" placeholder="e.g., SQL, Flask, BigQuery" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="skill_description">Description</label>
+                                <textarea id="skill_description" name="skill_description" placeholder="Brief description of this skill..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="skill_level">Current Level</label>
+                                <select id="skill_level" name="skill_level" required>
+                                    <option value="1">1 - Beginner</option>
+                                    <option value="2">2 - Basic</option>
+                                    <option value="3">3 - Intermediate</option>
+                                    <option value="4">4 - Advanced</option>
+                                    <option value="5">5 - Expert</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Add Skill</button>
+                        </form>
+
+                        <!-- Update Skill Form -->
+                        <form id="update-skill-form" class="form hidden">
+                            <div class="form-group">
+                                <label for="skill_id">Select Skill</label>
+                                <select id="skill_id" name="skill_id" required>
+                                    <option value="">Choose a skill to update</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="progress_note">Progress Update</label>
+                                <textarea id="progress_note" name="progress_note" placeholder="What did you learn or improve in this skill?" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="new_level">New Skill Level</label>
+                                <select id="new_level" name="new_level" required>
+                                    <option value="1">1 - Beginner</option>
+                                    <option value="2">2 - Basic</option>
+                                    <option value="3">3 - Intermediate</option>
+                                    <option value="4">4 - Advanced</option>
+                                    <option value="5">5 - Expert</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Update Skill Progress</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Skills List -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Your Skills</h2>
+                        <p class="card-description">Overview of your skill development</p>
+                    </div>
+                    <div class="card-body">
+                        <div id="skills-list" class="skills-list">
+                            <div class="loading">Loading skills...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Skill Template -->
+    <template id="skill-template">
+        <div class="skill-card">
+            <div class="skill-header">
+                <div>
+                    <h3 class="skill-name"></h3>
+                    <p class="skill-description"></p>
+                </div>
+                <div class="skill-rating"></div>
+            </div>
+            <div class="skill-progress hidden">
+                <h4>Recent Progress:</h4>
+                <ul class="progress-list"></ul>
+            </div>
+        </div>
+    </template>
+
+    <script src="{{ url_for('static', filename='js/skills.js') }}"></script>
+</body>
+</html>

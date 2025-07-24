@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summary - Traktern</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://kit.fontawesome.com/8190f54777.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="navbar-brand">Traktern</a>
+                <div class="navbar-links">
+                    <a href="/" class="nav-link">
+                        <span class="icon"><i class="fa-solid fa-book"></i></span>
+                        <span>Journal</span>
+                    </a>
+                    <a href="/skills" class="nav-link">
+                        <span class="icon"><i class="fa-solid fa-screwdriver-wrench"></i></span>
+                        <span>Skills</span>
+                    </a>
+                    <a href="/summary" class="nav-link active">
+                        <span class="icon"><i class="fa-solid fa-chart-simple"></i></span>
+                        <span>Summary</span>
+                    </a>
+                    <a href="/export" class="nav-link">
+                        <span class="icon"><i class="fa-solid fa-file-export"></i></span>
+                        <span>Export</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="container">
+            <div class="section">
+                <h1 class="page-title">Weekly Summary</h1>
+                <div id="weekly-summary" class="summary-card">
+                    <div class="loading">Loading weekly summary...</div>
+                </div>
+            </div>
+
+            <div class="content-grid">
+                <!-- Skill Progress Chart -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Skill Progress</h2>
+                        <p class="card-description">Track your skill development over time</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="skill-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Productivity Chart -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Productivity</h2>
+                        <p class="card-description">Your journal entries over time</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="productivity-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Weekly Summary Template -->
+    <template id="summary-template">
+        <h2 class="summary-title">Week of <span class="summary-date-range"></span></h2>
+        <div class="summary-content">
+            <div class="summary-section">
+                <h3>Accomplishments</h3>
+                <ul class="summary-list" id="accomplishments-list"></ul>
+            </div>
+            <div class="summary-section">
+                <h3>Learnings</h3>
+                <ul class="summary-list" id="learnings-list"></ul>
+            </div>
+            <div class="summary-section">
+                <h3>Challenges</h3>
+                <ul class="summary-list" id="challenges-list"></ul>
+            </div>
+            <div class="summary-section">
+                <h3>Next Week's Goals</h3>
+                <ul class="summary-list" id="goals-list"></ul>
+            </div>
+        </div>
+    </template>
+
+    <script type="module" src="{{ url_for('static', filename='js/summary.js') }}"></script>
+</body>
+</html>
